@@ -17,9 +17,18 @@ def get_happy_agents(model):
 
 def agent_portrayal(agent):
     """Define how the agents are diplayed."""
-    return{"color": "tab:orange" if agent.type == 0 else "tab:blue"}
+    return{"color": "tab:red" if agent.type == 0 else "tab:blue"}
 
-"""Define how the parameters will be displayed."""
+"""Define how the parameters will be displayed.
+    Args:
+        width: width of the grid
+        height: height of the grid
+        density: initial chance for a cell to be populated (0-1)
+        minority_pc: chance for an agent to be in a minority class (0-1)
+        homophily: minimum number of similiar neighbors needed for happiness
+        radius: search radius for checking neighbor similarity
+        seed: seed for reproducibility
+"""
 model_params = {
     "seed": {
         "type": "InputText",
@@ -62,7 +71,8 @@ page = SolaraViz(
         HappyPlot,
         get_happy_agents
     ],
-    model_params=model_params
+    model_params=model_params,
+    name="Schelling Segregation Model"
 )
 
 page
